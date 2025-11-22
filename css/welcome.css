@@ -1,0 +1,394 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #800000 0%, #4a0000 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #800000 0%, #600000 100%);
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.shield-icon {
+  width: 40px;
+  height: 48px;
+  background: white;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+h1 {
+  color: #1a202c;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #718096;
+  font-size: 16px;
+}
+
+.steps-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.steps-indicator::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.step.active .step-number {
+  background: #800000;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(128, 0, 0, 0.1);
+}
+
+.step.completed .step-number {
+  background: #48bb78;
+  color: white;
+}
+
+.step-label {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.step.active .step-label {
+  color: #2d3748;
+}
+
+.step-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+h2 {
+  color: #2d3748;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.description {
+  color: #718096;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7fafc;
+  border-radius: 10px;
+  position: relative;
+}
+
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.feature strong {
+  display: block;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.feature p {
+  color: #718096;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #2d3748;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #800000;
+  box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 70px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f7fafc;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-password:hover {
+  background: #edf2f7;
+  border-color: #a0aec0;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 5px;
+  display: block;
+  min-height: 18px;
+}
+
+.checkbox-group {
+  margin: 25px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-label span {
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #800000;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #600000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.3);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e0;
+}
+
+.warning-box, .info-box {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.warning-box {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #742a2a;
+}
+
+.info-box {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #7f1d1d;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: #48bb78;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: scaleIn 0.5s ease;
+}
+
+.success-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.what-happens-next {
+  background: #f7fafc;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 30px 0;
+}
+
+.what-happens-next h3 {
+  color: #2d3748;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.what-happens-next ol {
+  margin-left: 20px;
+  color: #4a5568;
+  line-height: 1.8;
+}
+
+.what-happens-next li {
+  margin-bottom: 8px;
+}

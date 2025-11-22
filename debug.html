@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug Auto-Auth</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+    .good { background: #d4edda; color: #155724; }
+    .bad { background: #f8d7da; color: #721c24; }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Debug UChicago Auto-Auth</h1>
+
+  <h2>Current Status:</h2>
+  <div id="status"></div>
+
+  <h2>Quick Actions:</h2>
+  <button onclick="enableAll()">Enable Everything</button>
+  <button onclick="testCredentials()">Test Fill Credentials</button>
+  <button onclick="clearAll()">Clear All Data</button>
+
+  <h2>Storage Data:</h2>
+  <pre id="storage"></pre>
+
+  <script>
+    async function checkStatus() {
+      chrome.storage.local.get(null, (data) => {
+        const status = document.getElementById('status');
+        const storage = document.getElementById('storage');
+
+        let html = '';
+
+        // Check enabled
+        if (data.enabled !== false) {
+          html += '<div class="status good">✓ Extension is ENABLED</div>';
+        } else {
+          html += '<div class="status bad">✗ Extension is DISABLED</div>';
+        }
+
+        // Check CNETID
+        if (data.cnetid) {
+          html += `<div class="status good">✓ CNETID saved: ${data.cnetid}</div>`;
+        } else {
+          html += '<div class="status bad">✗ No CNETID saved</div>';
+        }
+
+        // Check password
+        if (data.password) {
+          html += '<div class="status good">✓ Password saved (hidden)</div>';
+        } else {
+          html += '<div class="status bad">✗ No password saved</div>';
+        }
+
+        // Check auto-trust
+        if (data.autoTrust !== false) {
+          html += '<div class="status good">✓ Auto-trust device is ON</div>';
+        } else {
+          html += '<div class="status bad">✗ Auto-trust device is OFF</div>';
+        }
+
+        status.innerHTML = html;
+
+        // Show storage (hide password)
+        const displayData = { ...data };
+        if (displayData.password) {
+          displayData.password = '***HIDDEN***';
+        }
+        storage.textContent = JSON.stringify(displayData, null, 2);
+      });
+    }
+
+    function enableAll() {
+      chrome.storage.local.set({
+        enabled: true,
+        autoTrust: true
+      }, () => {
+        alert('Enabled! Now set your credentials in the options page.');
+        checkStatus();
+      });
+    }
+
+    function testCredentials() {
+      const cnetid = prompt('Enter your CNETID:');
+      const password = prompt('Enter your password:');
+
+      if (cnetid && password) {
+        chrome.storage.local.set({
+          cnetid: cnetid,
+          password: password,
+          enabled: true,
+          autoTrust: true
+        }, () => {
+          alert('Credentials saved and extension enabled!');
+          checkStatus();
+        });
+      }
+    }
+
+    function clearAll() {
+      if (confirm('Clear all data?')) {
+        chrome.storage.local.clear(() => {
+          alert('All data cleared');
+          checkStatus();
+        });
+      }
+    }
+
+    // Check on load
+    checkStatus();
+
+    // Refresh every second
+    setInterval(checkStatus, 1000);
+  </script>
+</body>
+</html>
