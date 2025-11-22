@@ -16,15 +16,26 @@ This extension automates the ENTIRE UChicago login process:
 
 ## 🚀 Installation
 
-1. **Install Extension**:
-   - Navigate to `chrome://extensions/`
-   - Enable "Developer mode" (top right)
-   - Click "Load unpacked"
-   - Select the `uchicago-auto-auth` folder
+### Quick Install (Recommended)
 
-2. **First Run**:
-   - Click the extension icon in Chrome toolbar
-   - Follow the welcome wizard to set up your credentials
+1. **Download the Extension**:
+   - [⬇️ Download uchicago-auto-auth.zip](https://github.com/cvltist/uchicago-auto-auth/releases/download/v0.1/uchicago-auto-auth.zip)
+   - Extract the ZIP file to a folder on your computer (remember where you save it!)
+
+2. **Add to Chrome**:
+   - Open Chrome and go to `chrome://extensions/`
+   - Toggle ON "Developer mode" (switch in top-right corner)
+   - Click "Load unpacked" button
+   - Browse to and select the extracted `uchicago-auto-auth` folder
+   - The extension icon should appear in your toolbar!
+
+3. **Initial Setup** (takes 30 seconds):
+   - Click the extension icon (puzzle piece icon → UChicago Auto-Auth)
+   - Follow the 3-step welcome wizard:
+     - Step 1: Enter your CNETID
+     - Step 2: Enter your password
+     - Step 3: Confirm and save
+   - That's it! The extension is now ready to use
 
 ## 🔧 Setup
 
