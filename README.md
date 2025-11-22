@@ -1,6 +1,8 @@
-# UChicago Auto-Auth Chrome Extension
+# UChicago Auto-Auth Browser Extension
 
 **Complete hands-free authentication for UChicago services** - from CNETID to final login in seconds!
+
+Available for both **Chrome** and **Firefox**!
 
 ## 🎯 What It Does
 
@@ -16,35 +18,76 @@ This extension automates the ENTIRE UChicago login process:
 
 ## 🚀 Installation
 
-### Quick Install (Recommended)
+### Chrome Installation
 
 1. **Download the Extension**:
    - [⬇️ Download uchicago-auto-auth.zip](https://github.com/cvltist/uchicago-auto-auth/releases/download/v0.1/uchicago-auto-auth.zip)
-   - Extract the ZIP file to a folder on your computer (remember where you save it!)
+   - Extract the ZIP file to a folder on your computer
 
 2. **Add to Chrome**:
    - Open Chrome and go to `chrome://extensions/`
    - Toggle ON "Developer mode" (switch in top-right corner)
    - Click "Load unpacked" button
-   - Browse to and select the extracted `uchicago-auto-auth` folder
+   - Browse to and select the extracted `chrome` folder
    - The extension icon should appear in your toolbar!
 
-3. **Initial Setup** (takes 30 seconds):
-   - Click the extension icon (puzzle piece icon → UChicago Auto-Auth)
-   - Follow the 3-step welcome wizard:
-     - Step 1: Enter your CNETID
-     - Step 2: Enter your password
-     - Step 3: Confirm and save
-   - That's it! The extension is now ready to use
+### Firefox Installation
+
+1. **Download the Extension**:
+   - [⬇️ Download uchicago-auto-auth.zip](https://github.com/cvltist/uchicago-auto-auth/releases/download/v0.1/uchicago-auto-auth.zip)
+   - Extract the ZIP file to a folder on your computer
+
+2. **Add to Firefox**:
+   - Open Firefox and go to `about:debugging`
+   - Click "This Firefox" on the left sidebar
+   - Click "Load Temporary Add-on" button
+   - Browse to the `firefox` folder and select `manifest.json`
+   - The extension will be loaded!
+
+   **Note**: For permanent installation in Firefox, the extension needs to be signed by Mozilla. The temporary installation will last until Firefox restarts.
+
+### Initial Setup (Both Browsers)
+
+1. Click the extension icon (puzzle piece icon → UChicago Auto-Auth)
+2. Follow the 3-step welcome wizard:
+   - Step 1: Enter your CNETID
+   - Step 2: Enter your password
+   - Step 3: Confirm and save
+3. That's it! The extension is now ready to use
+
+## 📂 Project Structure
+
+```
+uchicago-auto-auth/
+├── README.md              # This file
+├── chrome/               # Chrome extension
+│   ├── manifest.json     # Chrome manifest (v3)
+│   ├── popup.html
+│   ├── options.html
+│   ├── welcome.html
+│   ├── browser-polyfill.js
+│   ├── js/
+│   ├── css/
+│   └── icons/
+└── firefox/              # Firefox extension
+    ├── manifest.json     # Firefox manifest (v2)
+    ├── popup.html
+    ├── options.html
+    ├── welcome.html
+    ├── browser-polyfill.js  # Mozilla WebExtension polyfill
+    ├── js/
+    ├── css/
+    └── icons/
+```
 
 ## 🔧 Setup
 
 ### Prerequisites
 - **You must have a passkey already registered with Duo** (one-time setup through Duo's interface)
-- Chrome browser with passkey/WebAuthn support
+- Chrome or Firefox browser with passkey/WebAuthn support
 
 ### Configuration
-1. Click the extension icon in Chrome toolbar
+1. Click the extension icon in your browser toolbar
 2. If first run, follow the 3-step welcome wizard
 3. Or click "Settings" to configure:
    - Enter your CNETID
@@ -64,7 +107,7 @@ The extension will handle everything automatically!
 ## 🔐 Security
 
 ### How Credentials Are Stored
-- Credentials are stored **locally** in Chrome's storage
+- Credentials are stored **locally** in your browser's storage
 - They are **never** sent to external servers
 - Only used on official UChicago/Okta/Duo domains
 
@@ -72,7 +115,7 @@ The extension will handle everything automatically!
 - ⚠️ **Only use on your personal, secure device**
 - ⚠️ **Never use on shared or public computers**
 - Enable screen lock on your device
-- Use Chrome's profile lock if available
+- Use browser profile lock if available
 - Clear credentials when not needed
 
 ## 🛠️ Troubleshooting
@@ -90,32 +133,9 @@ The extension will handle everything automatically!
 - Ensure you have a passkey registered with Duo
 - Try manual passkey login first to verify it works
 
-### "Yes, this is my device" not clicking
-- This might be a timing issue
-- Try refreshing the page
-
-## 📂 Files Structure
-
-```
-uchicago-auto-auth/
-├── manifest.json         # Extension configuration
-├── popup.html           # Quick toggle popup
-├── options.html         # Settings page
-├── welcome.html         # First-run welcome wizard
-├── js/
-│   ├── auth-overlay.js  # Beautiful loading overlay
-│   ├── okta-handler.js  # Handles CNETID & password
-│   ├── duo-handler.js   # Handles device trust
-│   ├── background.js    # Extension initialization
-│   ├── popup.js         # Popup logic
-│   ├── options.js       # Settings logic
-│   └── welcome.js       # Welcome wizard logic
-├── css/
-│   ├── popup.css        # Popup styles
-│   ├── options.css      # Settings styles
-│   └── welcome.css      # Welcome wizard styles
-└── icons/              # Extension icons
-```
+### Firefox-specific issues
+- If the extension stops working after Firefox restart, reload it via `about:debugging`
+- For permanent installation, the extension needs Mozilla signing
 
 ## 🔄 Authentication Flow
 
@@ -149,7 +169,7 @@ The entire process is hidden behind a sleek loading screen showing:
 
 1. **Ensure passkey doesn't require interaction**: Configure your passkey to not require PIN/biometric if possible
 2. **Keep extension enabled**: Toggle stays on between sessions
-3. **Browser profile**: Use a dedicated Chrome profile for UChicago work
+3. **Browser profile**: Use a dedicated browser profile for UChicago work
 
 ## 🚨 Important Notes
 
@@ -166,6 +186,7 @@ The entire process is hidden behind a sleek loading screen showing:
 - **Smart Detection**: Automatically detects which authentication step you're on
 - **Visual Feedback**: Progress bar and status messages keep you informed
 - **Auto-Trust Device**: Automatically clicks "Yes, this is my device" to remember your browser
+- **Cross-Browser**: Works on both Chrome and Firefox
 
 ## ⚖️ Disclaimer
 

@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+  "name": "UChicago Auto-Auth",
+  "version": "1.0.0",
+  "description": "Complete hands-free authentication for UChicago services",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "https://*.duosecurity.com/*",
+    "https://*.uchicago.edu/*",
+    "https://uchicago.okta.com/*"
+  ],
+  "background": {
+    "scripts": ["browser-polyfill.js", "js/background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://uchicago.okta.com/*",
+        "https://*.okta.com/*"
+      ],
+      "js": ["browser-polyfill.js", "js/auth-overlay.js", "js/okta-handler.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://*.duosecurity.com/*"
+      ],
+      "js": ["browser-polyfill.js", "js/auth-overlay.js", "js/duo-handler.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "uchicago-auto-auth@extension",
+      "strict_min_version": "109.0"
+    }
+  }
+}

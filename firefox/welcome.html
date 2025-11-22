@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to UChicago Auto-Auth</title>
+  <link rel="stylesheet" href="css/welcome.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <div class="shield-icon"></div>
+      </div>
+      <h1>Welcome to UChicago Auto-Auth</h1>
+      <p class="subtitle">Let's get you set up in less than a minute!</p>
+    </div>
+
+    <div class="steps-indicator">
+      <div class="step active" id="step1-indicator">
+        <span class="step-number">1</span>
+        <span class="step-label">Welcome</span>
+      </div>
+      <div class="step" id="step2-indicator">
+        <span class="step-number">2</span>
+        <span class="step-label">Credentials</span>
+      </div>
+      <div class="step" id="step3-indicator">
+        <span class="step-number">3</span>
+        <span class="step-label">Done!</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Welcome -->
+    <div class="step-content" id="step1">
+      <h2>Automatic login for all UChicago services</h2>
+
+      <div class="feature-list">
+        <div class="feature">
+          <span class="feature-icon feature-icon-fast">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <strong>Lightning Fast</strong>
+            <p>Login in seconds, not minutes</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon feature-icon-secure">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="11" width="14" height="10" rx="2" stroke="#10b981" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <strong>Secure</strong>
+            <p>Credentials stored locally, never sent anywhere</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon feature-icon-seamless">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12l5 5L20 7" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <strong>Seamless</strong>
+            <p>Works with Canvas, my.UChicago, and more</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <strong>Important:</strong> Only use this extension on your personal, secure device. Never use on shared computers.
+      </div>
+
+      <div class="info-box">
+        <strong>Prerequisite:</strong> You must have a passkey registered with Duo for fully automatic authentication.
+        <br><br>
+        <strong>How to add a passkey:</strong> Log into any UChicago service, go to your Duo settings, click "Add a new device", and select "Security Key" or "Touch ID". This one-time setup enables hands-free login.
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-primary" id="getStartedBtn">Get Started</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Credentials -->
+    <div class="step-content hidden" id="step2">
+      <h2>Enter your UChicago credentials</h2>
+      <p class="description">These will be stored securely in your browser</p>
+
+      <div class="form-group">
+        <label for="cnetid">CNET ID</label>
+        <input type="text" id="cnetid" placeholder="Enter your CNET ID" autocomplete="username">
+        <span class="error-message" id="cnetid-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <button type="button" id="togglePassword" class="toggle-password">Show</button>
+        </div>
+        <span class="error-message" id="password-error"></span>
+      </div>
+
+      <div class="checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="enableAuth" checked>
+          <span>Enable automatic authentication</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="autoTrust" checked>
+          <span>Auto-click "Yes, this is my device"</span>
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-secondary" onclick="goToStep(1)">Back</button>
+        <button class="btn btn-primary" id="saveBtn">Save & Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Success -->
+    <div class="step-content hidden" id="step3">
+      <div class="success-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You're all set!</h2>
+      <p class="description">UChicago Auto-Auth is now configured and ready to use</p>
+
+      <div class="what-happens-next">
+        <h3>What happens next?</h3>
+        <ol>
+          <li>Navigate to any UChicago service (Canvas, my.UChicago, etc.)</li>
+          <li>Watch as the extension automatically fills and submits your credentials</li>
+          <li>Your passkey will authenticate automatically</li>
+          <li>You're logged in - no clicks required!</li>
+        </ol>
+      </div>
+
+      <div class="info-box">
+        <strong>Tip:</strong> Make sure you have a passkey registered with Duo for fully automatic login. The extension will handle everything else!
+      </div>
+
+      <div class="button-group">
+        <button class="btn btn-secondary" id="openSettingsBtn">Open Settings</button>
+        <button class="btn btn-primary" id="testLoginBtn">Test Login</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="browser-polyfill.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

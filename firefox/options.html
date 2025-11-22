@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UChicago Auto-Auth Settings</title>
+  <link rel="stylesheet" href="css/options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>UChicago Auto-Auth Settings</h1>
+
+    <div class="warning-box">
+      <strong>Security Notice:</strong> Your credentials are stored locally in your browser and never sent anywhere. However, storing passwords always carries some risk. Only use this on your personal, secure device.
+    </div>
+
+    <div class="section">
+      <h2>Credentials</h2>
+      <p class="description">Enter your UChicago credentials for automatic login.</p>
+
+      <div class="form-group">
+        <label for="cnetid">CNET ID:</label>
+        <input type="text" id="cnetid" placeholder="Enter your CNET ID" autocomplete="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <button type="button" id="togglePassword" class="toggle-password">Show</button>
+        </div>
+      </div>
+
+      <button id="saveCredentials" class="btn btn-primary">Save Credentials</button>
+      <button id="clearCredentials" class="btn btn-danger">Clear All Data</button>
+    </div>
+
+    <div class="section">
+      <h2>Settings</h2>
+
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox" id="enabled" checked>
+          <span>Enable automatic authentication</span>
+        </label>
+        <p class="hint">When disabled, the extension won't fill or submit any forms</p>
+      </div>
+
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox" id="autoTrust" checked>
+          <span>Auto-click "Yes, this is my device"</span>
+        </label>
+        <p class="hint">Automatically trusts the device after passkey authentication</p>
+      </div>
+
+      <button id="saveSettings" class="btn btn-secondary">Save Settings</button>
+    </div>
+
+    <div class="section">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">1</span>
+          <span>Detects UChicago login page</span>
+        </div>
+        <div class="step">
+          <span class="step-number">2</span>
+          <span>Auto-fills and submits CNET ID</span>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <span>Auto-fills and submits password</span>
+        </div>
+        <div class="step">
+          <span class="step-number">4</span>
+          <span>Clicks "Verify" for Duo</span>
+        </div>
+        <div class="step">
+          <span class="step-number">5</span>
+          <span>Passkey authenticates automatically</span>
+        </div>
+        <div class="step">
+          <span class="step-number">6</span>
+          <span>Clicks "Yes, this is my device"</span>
+        </div>
+        <div class="step complete">
+          <span class="step-number">7</span>
+          <span>You're logged in!</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="statusMessage" class="status-message"></div>
+  </div>
+
+  <script src="browser-polyfill.js"></script>
+  <script src="js/options.js"></script>
+</body>
+</html>
